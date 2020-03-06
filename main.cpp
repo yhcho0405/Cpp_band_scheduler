@@ -28,23 +28,25 @@ using namespace std;
 
 typedef pair<int, int> p;
 
-void shuffle(char * , int);
+void shuffle(char *, int);
+
+void gotoxy(int x, int y);
 
 class Person {
-    public:
-        string name;
-    int session[6] = {
-        0,
-    };
-    int posDay[6] = {
-        0,
-    };
-    int hopDay;
+public:
+	string name;
+	int session[6] = {
+		0,
+	};
+	int posDay[6] = {
+		0,
+	};
+	int hopDay;
 };
 
 int posNumTimetable[6][6]; // tt
 int middleArr[6][6][100];
-int sessionAvaNum[5][5]; // ì„¸ì…˜ ê°€ìš©ì¸ì›
+int sessionAvaNum[5][5]; // ¼¼¼Ç °¡¿ëÀÎ¿ø
 int cccweekAvaNum[5][5];
 int jjjj[6][6];
 
@@ -132,38 +134,38 @@ int main() {
 	ifstream fin;
 	fin.open("first.txt");
 
-	int personnel; //ì´ ì¸ì› ë³€ìˆ˜
-	cout << "ì‚¬ëŒ ì´ ëª‡ëª…?" << endl;
+	int personnel; //ÃÑ ÀÎ¿ø º¯¼ö
+	cout << "»ç¶÷ ÃÑ ¸î¸í?" << endl;
 	input >> personnel;
 	cout << personnel << endl << endl;
 	slp;
-	Person people[100]; //ì¸ì›ë³„ í´ë˜ìŠ¤ ë°°ì—´ ìƒì„±
+	Person people[100]; //ÀÎ¿øº° Å¬·¡½º ¹è¿­ »ı¼º
 
-	for (int i = 0; i < personnel; i++) // ì¸ì› ìˆ˜ ë§Œí¼ ë°˜ë³µ
+	for (int i = 0; i < personnel; i++) // ÀÎ¿ø ¼ö ¸¸Å­ ¹İº¹
 	{
-		string parName; // i ë²ˆì§¸ ì‚¬ëŒì˜ ì´ë¦„ ë³€ìˆ˜
-		cout << i + 1 << "ë²ˆì§¸ ì‚¬ëŒì˜ ì´ë¦„ ì…ë ¥" << endl;
+		string parName; // i ¹øÂ° »ç¶÷ÀÇ ÀÌ¸§ º¯¼ö
+		cout << i + 1 << "¹øÂ° »ç¶÷ÀÇ ÀÌ¸§ ÀÔ·Â" << endl;
 		input >> parName;
 		cout << parName << endl << endl;
 		slp;
-		people[i].name = parName; // i ë²ˆì§¸ ì‚¬ëŒì˜ ì´ë¦„ì„ í´ë˜ìŠ¤ì— ì €ì¥
+		people[i].name = parName; // i ¹øÂ° »ç¶÷ÀÇ ÀÌ¸§À» Å¬·¡½º¿¡ ÀúÀå
 
-		int parSessionNum; // i ë²ˆì§¸ ì‚¬ëŒì´ ê°€ëŠ¥í•œ ì„¸ì…˜ì˜ ìˆ˜
+		int parSessionNum; // i ¹øÂ° »ç¶÷ÀÌ °¡´ÉÇÑ ¼¼¼ÇÀÇ ¼ö
 
-		cout << people[i].name << "ì˜ ê°€ëŠ¥í•œ ì„¸ì…˜ì€ ëª‡ê°œ?" << endl;
+		cout << people[i].name << "ÀÇ °¡´ÉÇÑ ¼¼¼ÇÀº ¸î°³?" << endl;
 		input >> parSessionNum;
 		cout << parSessionNum << endl << endl;
 		slp;
 
-		cout << "ë³´ì»¬:v ê¸°íƒ€:g ë² ì´ìŠ¤:b ì‹ ë””:s ë“œëŸ¼:d" << endl;
+		cout << "º¸ÄÃ:v ±âÅ¸:g º£ÀÌ½º:b ½Åµğ:s µå·³:d" << endl;
 
-		for (int j = 0; j < parSessionNum; j++) // ê°€ëŠ¥í•œ ì„¸ì…˜ì˜ ìˆ˜ ë§Œí¼ ë°˜ë³µ
+		for (int j = 0; j < parSessionNum; j++) // °¡´ÉÇÑ ¼¼¼ÇÀÇ ¼ö ¸¸Å­ ¹İº¹
 		{
-			char parSession; // ê°€ëŠ¥í•œ ì„¸ì…˜ì˜ ì¢…ë¥˜
+			char parSession; // °¡´ÉÇÑ ¼¼¼ÇÀÇ Á¾·ù
 			input >> parSession;
 			cout << parSession << endl << endl;
 			slp;
-			switch (parSession) // ì„¸ì…˜ ìŠ¤ìœ„ì¹˜
+			switch (parSession) // ¼¼¼Ç ½ºÀ§Ä¡
 			{
 			case 'g':
 				people[i].session[1] = 1;
@@ -182,12 +184,12 @@ int main() {
 				break;
 			}
 		}
-		int parDayNum; // ië²ˆì§¸ ì‚¬ëŒì˜ ê°€ëŠ¥í•œ ìš”ì¼ ê°¯ìˆ˜
-		cout << people[i].name << "ì˜ ê°€ëŠ¥í•œ ìš”ì¼ì€ ëª‡ê°œ?" << endl;
+		int parDayNum; // i¹øÂ° »ç¶÷ÀÇ °¡´ÉÇÑ ¿äÀÏ °¹¼ö
+		cout << people[i].name << "ÀÇ °¡´ÉÇÑ ¿äÀÏÀº ¸î°³?" << endl;
 		input >> parDayNum;
 		cout << parDayNum << endl << endl;
 		slp;
-		cout << "ì›”:a   í™”:b   ìˆ˜:c   ëª©:d   ê¸ˆ:e" << endl;
+		cout << "¿ù:a   È­:b   ¼ö:c   ¸ñ:d   ±İ:e" << endl;
 
 		for (int j = 0; j < parDayNum; j++) {
 			char parDay;
@@ -212,7 +214,7 @@ int main() {
 				break;
 			}
 		}
-		cout << people[i].name << "ì˜ í¬ë§ ì¼ì£¼ì¼ ìµœëŒ€ ì¶œì„ ì¼ ìˆ˜ëŠ” ëª‡íšŒ?" << endl;
+		cout << people[i].name << "ÀÇ Èñ¸Á ÀÏÁÖÀÏ ÃÖ´ë Ãâ¼® ÀÏ ¼ö´Â ¸îÈ¸?" << endl;
 		input >> people[i].hopDay;
 		cout << people[i].hopDay << endl << endl;
 		slp;
@@ -225,15 +227,15 @@ int main() {
 		cout << "##";
 		slp;
 	}
-	cout << "í¬";
+	cout << "Å©";
 	slp;
-	cout << "ë¡¤";
+	cout << "·Ñ";
 	slp;
-	cout << "ë§";
+	cout << "¸µ";
 	slp;
-	cout << "ê²°";
+	cout << "°á";
 	slp;
-	cout << "ê³¼";
+	cout << "°ú";
 	slp;
 	for (int j = 0; j < 10; j++) {
 		cout << "##";
@@ -246,15 +248,15 @@ int main() {
 	slp;
 	cout << "*                                     *" << endl;
 	slp;
-	cout << "* ________________ì´ë¦„_______________ *" << endl;
+	cout << "* ________________ÀÌ¸§_______________ *" << endl;
 	slp;
 	cout << "*                                     *" << endl;
 	slp;
-	cout << "*  í¬ë§ ìµœëŒ€ ì¶œì„ ì¼ ìˆ˜: n            *" << endl;
+	cout << "*  Èñ¸Á ÃÖ´ë Ãâ¼® ÀÏ ¼ö: n            *" << endl;
 	slp;
-	cout << "*  ì¶œì„ ê°€ëŠ¥ ìš”ì¼: ì›” í™” ìˆ˜ ëª© ê¸ˆ     *" << endl;
+	cout << "*  Ãâ¼® °¡´É ¿äÀÏ: ¿ù È­ ¼ö ¸ñ ±İ     *" << endl;
 	slp;
-	cout << "*  ê°€ëŠ¥í•œ ì„¸ì…˜ ëª©ë¡:  g  s  b  d  v   *" << endl;
+	cout << "*  °¡´ÉÇÑ ¼¼¼Ç ¸ñ·Ï:  g  s  b  d  v   *" << endl;
 	slp;
 	cout << "*                                     *" << endl;
 	slp;
@@ -263,11 +265,11 @@ int main() {
 	cout << endl << endl;
 	for (int j = 0; j < personnel; j++) {
 		cout << j << "_____________" << people[j].name << "_______________" << endl <<
-			endl << "í¬ë§ ìµœëŒ€ ì¶œì„ì¼ ìˆ˜: " << people[j].hopDay << endl <<
-			"ì¶œì„ ê°€ëŠ¥ ìš”ì¼: " << people[j].posDay[1] << "  " <<
+			endl << "Èñ¸Á ÃÖ´ë Ãâ¼®ÀÏ ¼ö: " << people[j].hopDay << endl <<
+			"Ãâ¼® °¡´É ¿äÀÏ: " << people[j].posDay[1] << "  " <<
 			people[j].posDay[2] << "  " << people[j].posDay[3] <<
 			"  " << people[j].posDay[4] << "  " << people[j].posDay[5] <<
-			"  " << endl << "ê°€ëŠ¥í•œ ì„¸ì…˜ ëª©ë¡: " << people[j].session[1] <<
+			"  " << endl << "°¡´ÉÇÑ ¼¼¼Ç ¸ñ·Ï: " << people[j].session[1] <<
 			"  " << people[j].session[2] << "  " << people[j].session[3] <<
 			"  " << people[j].session[4] << "  " << people[j].session[5] <<
 			endl << endl;
@@ -275,7 +277,7 @@ int main() {
 	}
 	cout << "__________________________________" << endl;
 	char checkNormal;
-	cout << endl << endl << "ìœ„ ê²°ê³¼ê°€ ë§ìœ¼ë©´ Y í‹€ë¦¬ë©´ N ì…ë ¥: ";
+	cout << endl << endl << "À§ °á°ú°¡ ¸ÂÀ¸¸é Y Æ²¸®¸é N ÀÔ·Â: ";
 	cin >> checkNormal;
 	if (checkNormal == 'Y' || checkNormal == 'y') {}
 	else if (checkNormal == 'N' || checkNormal == 'n') {
@@ -288,7 +290,7 @@ int main() {
 			if (people[i].posDay[j] == 1) {
 				for (int k = 1; k <= 5; k++) {
 					if (people[i].session[k] == 1) {
-						posNumTimetable[k][j]++; //ë¹ˆë„ìˆ˜
+						posNumTimetable[k][j]++; //ºóµµ¼ö
 						middleArr[k][j][i] = 1;
 					}
 				}
@@ -319,14 +321,14 @@ int main() {
 		'v'
 	};
 	string parD[5] = {
-		"ì›”",
-		"í™”",
-		"ìˆ˜",
-		"ëª©",
-		"ê¸ˆ"
+		"¿ù",
+		"È­",
+		"¼ö",
+		"¸ñ",
+		"±İ"
 	};
 	cout << endl << endl << endl;
-	cout << "  |  ì›”  í™”  ìˆ˜  ëª©  ê¸ˆ" << endl;
+	cout << "  |  ¿ù  È­  ¼ö  ¸ñ  ±İ" << endl;
 	cout << "--+-------------------------" << endl;
 	for (int i = 1; i <= 5; i++) {
 		cout << parSes[i - 1] << " | ";
@@ -336,16 +338,16 @@ int main() {
 		cout << endl;
 	}
 	cout << "--+-------------------------" << endl;
-	// ì›” í™” ìˆ˜ ëª© ê¸ˆ
-	int exDay[5] = { 0, 0, 0, 0, 0 }; // ê²€ì‚¬ ì œì™¸ ìš”ì¼ ì„¤ì •(ì œì™¸í•˜ê³ ì‹¶ìœ¼ë©´ 1ë¡œ ì„¤ì •)
+	// ¿ù È­ ¼ö ¸ñ ±İ
+	int exDay[5] = { 0, 0, 0, 0, 0 }; // °Ë»ç Á¦¿Ü ¿äÀÏ ¼³Á¤(Á¦¿ÜÇÏ°í½ÍÀ¸¸é 1·Î ¼³Á¤)
 
-	int minNum[5][5] = {     //íŒ€ë³„ ì„¸ì…˜ ìµœì†Œì¸ì› ì„¤ì •
-	//     ì›” í™” ìˆ˜ ëª© ê¸ˆ
+	int minNum[5][5] = {     //ÆÀº° ¼¼¼Ç ÃÖ¼ÒÀÎ¿ø ¼³Á¤
+	//     ¿ù È­ ¼ö ¸ñ ±İ
 		/*v*/ {1, 1, 1, 1, 1},
-		/*g*/ {2, 2, 2, 2, 2},
+		/*g*/ {1, 1, 1, 1, 1},
 		/*b*/ {1, 1, 1, 1, 1},
 		/*s*/ {1, 1, 1, 1, 1},
-		/*d*/ {2, 2, 2, 2, 2}
+		/*d*/ {1, 1, 1, 1, 1}
 	};
 	cout << endl;
 
@@ -354,11 +356,11 @@ int main() {
 		for (int j = 1; j <= 5; j++) {
 			if (exDay[j - 1] == 0) {
 				if (posNumTimetable[i][j] == 0) {
-					cout << parD[j - 1] << "ìš”ì¼ì˜ " << parSes[i - 1] << "í•­ëª©ì— í•´ë‹¹ë˜ëŠ” ì¸ì›ì´ ì—†ìŒ." << endl;
+					cout << parD[j - 1] << "¿äÀÏÀÇ " << parSes[i - 1] << "Ç×¸ñ¿¡ ÇØ´çµÇ´Â ÀÎ¿øÀÌ ¾øÀ½." << endl;
 					checkTtPos = 0;
 				}
 				else if (posNumTimetable[i][j] < minNum[i - 1][j - 1]) {
-					cout << parD[j - 1] << "ìš”ì¼ì˜ " << parSes[i - 1] << "í•­ëª©ì— í•´ë‹¹ë˜ëŠ” ì¸ì›ì´ ìµœì†Œì¸ì›ë³´ë‹¤ ì ìŒ." << endl;
+					cout << parD[j - 1] << "¿äÀÏÀÇ " << parSes[i - 1] << "Ç×¸ñ¿¡ ÇØ´çµÇ´Â ÀÎ¿øÀÌ ÃÖ¼ÒÀÎ¿øº¸´Ù ÀûÀ½." << endl;
 				}
 			}
 		}
@@ -366,13 +368,13 @@ int main() {
 	cout << endl;
 
 	if (checkTtPos == 0) {
-		cout << "ìœ„ì˜ ì´ìœ ë¡œ ì‹œê°„í‘œë¥¼ ìƒì„±í•  ìˆ˜ ì—†ìŒ." << endl;
+		cout << "À§ÀÇ ÀÌÀ¯·Î ½Ã°£Ç¥¸¦ »ı¼ºÇÒ ¼ö ¾øÀ½." << endl;
 		Sleep(1000);
-		cout << "3ì´ˆ í›„ ìë™ì¢…ë£Œ..." << endl;
+		cout << "3ÃÊ ÈÄ ÀÚµ¿Á¾·á..." << endl;
 		Sleep(1000);
-		cout << "2ì´ˆ í›„ ìë™ì¢…ë£Œ..." << endl;
+		cout << "2ÃÊ ÈÄ ÀÚµ¿Á¾·á..." << endl;
 		Sleep(1000);
-		cout << "1ì´ˆ í›„ ìë™ì¢…ë£Œ..." << endl;
+		cout << "1ÃÊ ÈÄ ÀÚµ¿Á¾·á..." << endl;
 		Sleep(1000);
 		return 0;
 	}
@@ -381,17 +383,17 @@ int main() {
 	for (int i = 0; i < personnel; i++) // AvaNum
 	{
 		//SessionAvaNum
-		for (int j = 1; j <= 5; j++) // ìš”ì¼
+		for (int j = 1; j <= 5; j++) // ¿äÀÏ
 		{
 			int sero = 0;
 			if (people[i].posDay[j] == 1) {
-				for (int k = 1; k <= 5; k++) // ì„¸ì…˜
+				for (int k = 1; k <= 5; k++) // ¼¼¼Ç
 				{
 					if (people[i].session[k] == 1) {
 						sero++;
 					}
 				}
-				for (int k = 1; k <= 5; k++) // ì„¸ì…˜
+				for (int k = 1; k <= 5; k++) // ¼¼¼Ç
 				{
 					if (people[i].session[k] == 1) {
 						sessionAvaNum[k - 1][j - 1] += sero;
@@ -399,12 +401,12 @@ int main() {
 				}
 			}
 		}
-		
+
 	}
 
-	
 
-	// ìµœëŒ€ ì¶œì„ ê°€ëŠ¥ ì¼ ìˆ˜ë¥¼ ë§ì¶°ì„œ ì‹œê°„í‘œ ìƒì„± 
+
+	// ÃÖ´ë Ãâ¼® °¡´É ÀÏ ¼ö¸¦ ¸ÂÃç¼­ ½Ã°£Ç¥ »ı¼º 
 
 
 	p pe[100];
@@ -417,11 +419,11 @@ int main() {
 	/*
 		for (int j = 0; j < personnel; j++) {
 			cout << j << "_____________" << people[pe[j].second].name << "_______________" << endl <<
-				endl << "í¬ë§ ìµœëŒ€ ì¶œì„ì¼ ìˆ˜: " << people[pe[j].second].hopDay << endl <<
-				"ì¶œì„ ê°€ëŠ¥ ìš”ì¼: " << people[pe[j].second].posDay[1] << "  " <<
+				endl << "Èñ¸Á ÃÖ´ë Ãâ¼®ÀÏ ¼ö: " << people[pe[j].second].hopDay << endl <<
+				"Ãâ¼® °¡´É ¿äÀÏ: " << people[pe[j].second].posDay[1] << "  " <<
 				people[pe[j].second].posDay[2] << "  " << people[pe[j].second].posDay[3] <<
 				"  " << people[pe[j].second].posDay[4] << "  " << people[pe[j].second].posDay[5] <<
-				"  " << endl << "ê°€ëŠ¥í•œ ì„¸ì…˜ ëª©ë¡: " << people[pe[j].second].session[1] <<
+				"  " << endl << "°¡´ÉÇÑ ¼¼¼Ç ¸ñ·Ï: " << people[pe[j].second].session[1] <<
 				"  " << people[pe[j].second].session[2] << "  " << people[pe[j].second].session[3] <<
 				"  " << people[pe[j].second].session[4] << "  " << people[pe[j].second].session[5] <<
 				endl << endl;
@@ -429,12 +431,12 @@ int main() {
 		}
 	*/
 
-	//ì„¸ì…˜ ì²˜ë¦¬
+	//¼¼¼Ç Ã³¸®
 	for (int i = 0; i < personnel; i++)
 	{
 		for (int j = 0; j < 5; j++)
 		{
-			if (people[pe[i].second].posDay[j + 1] == 1) // ì´ê±°, ì•ˆí•œ ë‚ ì— ì„¸ì…˜ ì²´í¬ë¨
+			if (people[pe[i].second].posDay[j + 1] == 1) // ÀÌ°Å, ¾ÈÇÑ ³¯¿¡ ¼¼¼Ç Ã¼Å©µÊ
 			{
 				vector<int> vrr;
 				for (int k = 0; k < 5; k++)
@@ -449,7 +451,7 @@ int main() {
 
 				for (int k = 0; k < 5; k++)
 				{
-					if (people[pe[i].second].session[k + 1] == 1) //ã…ã„´ã…‡ã„¹
+					if (people[pe[i].second].session[k + 1] == 1) //¤±¤¤¤·¤©
 					{
 						if (sessionAvaNum[k][j] == minn)
 						{
@@ -461,7 +463,7 @@ int main() {
 				}
 			roofinter: for (int k = 0; k < 5; k++)
 			{
-				if (middleArr[k + 1][j + 1][pe[i].second] != 0) //ã…ã„´ã…‡ã„¹
+				if (middleArr[k + 1][j + 1][pe[i].second] != 0) //¤±¤¤¤·¤©
 				{
 					sessionAvaNum[k][j] -= vrr.size();
 					middleArr[k + 1][j + 1][pe[i].second]--;
@@ -471,8 +473,8 @@ int main() {
 		}
 	}
 
-	int weekAvaNum[5][5] = {  
-	//     ì›” í™” ìˆ˜ ëª© ê¸ˆ
+	int weekAvaNum[5][5] = {
+		//     ¿ù È­ ¼ö ¸ñ ±İ
 		/*v*/ {0, 0, 0, 0, 0},
 		/*g*/ {0, 0, 0, 0, 0},
 		/*b*/ {0, 0, 0, 0, 0},
@@ -486,22 +488,22 @@ int main() {
 		{
 			for (int k = 1; k <= 5; k++)
 			{
-				if(middleArr[j][k][i] == 1) 
-				{					
+				if (middleArr[j][k][i] == 1)
+				{
 					weekAvaNum[j - 1][k - 1] += people[i].hopDay;
 				}
 			}
 		}
 	}
 	// WeekAvaNum
-	
+
 
 	int cloneMidleArr[6][6][100];
-	for(int i = 1; i <= 5; i++)
+	for (int i = 1; i <= 5; i++)
 	{
-		for(int j = 1; j <= 5; j++)
+		for (int j = 1; j <= 5; j++)
 		{
-			for(int k = 0; k < 99; k++)
+			for (int k = 0; k < 99; k++)
 			{
 				cloneMidleArr[i][j][k] = middleArr[i][j][k];
 			}
@@ -509,52 +511,52 @@ int main() {
 	}
 
 	int cloneWeekAvaNum[5][5];
-	for(int i = 0; i < 5; i++)
+	for (int i = 0; i < 5; i++)
 	{
-		for(int j = 0; j < 5; j++)
+		for (int j = 0; j < 5; j++)
 		{
 			cloneWeekAvaNum[i][j] = weekAvaNum[i][j];
 		}
 	}
 
 	int kkkk[6][6];
-	for(int i = 1; i <= 5; i++)
+	for (int i = 1; i <= 5; i++)
 	{
-		for(int j = 1; j <= 5; j++)
+		for (int j = 1; j <= 5; j++)
 		{
 			kkkk[i][j] = jjjj[i][j];
 		}
 	}
 
 	bool isTrue = true;
-	
-	while(isTrue) 
+
+	while (isTrue)
 	{
-		for(int i = 1; i <= 5; i++)
+		for (int i = 1; i <= 5; i++)
 		{
-			for(int j = 1; j <= 5; j++)
+			for (int j = 1; j <= 5; j++)
 			{
 				jjjj[i][j] = kkkk[i][j];
 			}
 		}
-		for(int i = 1; i <= 5; i++)
+		for (int i = 1; i <= 5; i++)
 		{
-			for(int j = 1; j <= 5; j++)
+			for (int j = 1; j <= 5; j++)
 			{
-				for(int k = 0; k < 99; k++)
+				for (int k = 0; k < 99; k++)
 				{
 					middleArr[i][j][k] = cloneMidleArr[i][j][k];
 				}
 			}
 		}
-		for(int i = 0; i < 5; i++)
+		for (int i = 0; i < 5; i++)
 		{
-			for(int j = 0; j < 5; j++)
+			for (int j = 0; j < 5; j++)
 			{
 				weekAvaNum[i][j] = cccweekAvaNum[i][j];
 			}
 		}
-		// ìš”ì¼ ì²˜ë¦¬
+		// ¿äÀÏ Ã³¸®
 		for (int i = 0; i < personnel; i++)
 		{
 			int dummy[6][6] = { 0, };
@@ -565,8 +567,8 @@ int main() {
 				{
 					if (middleArr[j + 1][k + 1][pe[i].second] == 1)
 					{
-						dummy[j][k] = 1;											  
-						vrr.push_back(weekAvaNum[j][k]);							  
+						dummy[j][k] = 1;
+						vrr.push_back(weekAvaNum[j][k]);
 					}
 				}
 			}
@@ -606,15 +608,15 @@ int main() {
 				}
 			}
 		}
-		
+
 		isTrue = false;
 		for (int j = 1; j <= 5; j++)
 		{
 			for (int k = 1; k <= 5; k++)
 			{
-				if(jjjj[j][k] == 0)
+				if (jjjj[j][k] == 0)
 				{
-					if(exDay[k - 1] == 0)
+					if (exDay[k - 1] == 0)
 					{
 						cccweekAvaNum[j - 1][k - 1]--;
 						isTrue = true;
@@ -641,7 +643,7 @@ int main() {
 	//
 	cout << endl << endl << endl << endl;
 
-	
+
 	for (int j = 1; j <= 5; j++)
 	{
 		for (int k = 1; k <= 5; k++)
@@ -650,8 +652,8 @@ int main() {
 		}
 		cout << endl;
 	}
-	cout << endl << "<ì„¸ì…˜ë³„ ê°€ì¤‘ì¹˜ í…Œì´ë¸”>" << endl;
-	cout << "  |  ì›”  í™”  ìˆ˜  ëª©  ê¸ˆ" << endl;
+	cout << endl << "<¼¼¼Çº° °¡ÁßÄ¡ Å×ÀÌºí>" << endl;
+	cout << "  |  ¿ù  È­  ¼ö  ¸ñ  ±İ" << endl;
 	cout << "--+----------------------" << endl;
 	for (int i = 0; i < 5; i++) {
 		cout << parSes[i] << " | ";
@@ -661,8 +663,8 @@ int main() {
 		cout << endl;
 	}
 	cout << "--+-------------------------" << endl;
-	cout << endl << "<ìš”ì¼ë³„ ê°€ì¤‘ì¹˜ í…Œì´ë¸”>" << endl;
-	cout << "  |  ì›”  í™”  ìˆ˜  ëª©  ê¸ˆ" << endl;
+	cout << endl << "<¿äÀÏº° °¡ÁßÄ¡ Å×ÀÌºí>" << endl;
+	cout << "  |  ¿ù  È­  ¼ö  ¸ñ  ±İ" << endl;
 	cout << "--+----------------------" << endl;
 	for (int i = 0; i < 5; i++) {
 		cout << parSes[i] << " | ";
@@ -672,16 +674,77 @@ int main() {
 		cout << endl;
 	}
 	cout << "--+-------------------------" << endl;
+
+
+	//
+	system("pause");
+	system("cls");
+
+	system("mode con cols=160 lines=35");
+
+
+	gotoxy(8, 0);
+	printf("¿ù");
+	gotoxy(8 + 8 * 4, 0);
+	printf("È­");
+	gotoxy(8 + 8 * 8, 0);
+	printf("¼ö");
+	gotoxy(8 + 8 * 12, 0);
+	printf("¸ñ");
+	gotoxy(8 + 8 * 16, 0);
+	printf("±İ");
+	printf("\n");
+
+	char day_arr[5] = { 'g', 's', 'b', 'd', 'v' };
+	int i = 0;
+	int c = 2;
+	int cnt = 0;
+	int line = 0;
+	int ccc = 0;
+	// ¼¼¼Ç
+	for (int j = 0; j < 5; j++)
+	{
+		gotoxy(0, j * 5 + 2);
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), c++);
+		printf("%c\n", day_arr[i++]);
+		// ¿äÀÏ
+		for (int k = 1; k <= 5; k++)
+		{
+			int para = j * 5 + 1;
+			gotoxy(8 + 8 * (k - 1) * 5, para);
+			// »ç¶÷
+			string strr;
+			for (int i = 0; i < personnel; i++)
+			{
+				if (middleArr[j + 1][k][i] == 1)
+				{
+					gotoxy(8 + 8 * (k - 1) * 4, ++para);
+					cout << people[i].name;
+				}
+				slp;
+			}
+		}
+	
+	}
+	cout << endl << endl << endl << endl;
 }
 
 void shuffle(char * arr, int num) {
-    int temp;
-    int rn;
-    for (int i = 0; i < num - 1; i++) {
+	int temp;
+	int rn;
+	for (int i = 0; i < num - 1; i++) {
 
-        rn = rand() % (num - i) + i;
-        temp = arr[i];
-        arr[i] = arr[rn];
-        arr[rn] = temp;
-    }
+		rn = rand() % (num - i) + i;
+		temp = arr[i];
+		arr[i] = arr[rn];
+		arr[rn] = temp;
+	}
+}
+void gotoxy(int x, int y)
+{
+
+	COORD pos = { x,y };
+
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+
 }

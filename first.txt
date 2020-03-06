@@ -1,49 +1,157 @@
+22
+
+aa
+2
+g d 
 5
-ChoYoungHyo
+a b c d e
 3
-g
-v
+
+ab
+1
 b
 3
-a
-b
-c
+a c d
 2
-SongInSex
-2
+
+ac
+1
 v
-b
+2
+a c
+1
+
+ad
+2
+b s
+2
+a c
+1
+
+ae
+1
+d
+2
+a c
+1
+
+af
+5
+v g b s d
 3
-a
-c
-d
+a b e
 2
-NoMuHyun
+
+ag
+1
+s 
+2
+a c
+1
+
+ah
+1
+g 
 3
-g
-s
-d
+a b c
+1
+
+ai
 2
-d
-e
-2
-hello
-2
-v
-s
+d s
 4
-a
-b
-c
-e
-3
-helloworld
+a b d e
 2
-b
-d
+
+aj
+1
+d 
+2
+a c
+1
+
+ak
 4
-a
-b
-c
-e
+g v b d 
+3
+a d e
 2
+
+al
+2
+v d 
+4
+a b d e
+1
+
+am
+1
+b 
+2
+a b
+1
+
+an
+1
+b
+1
+a
+1
+
+ao
+2
+g b
+2
+a e
+1
+
+ap
+1
+v
+2
+a e
+1
+
+aq
+1
+g 
+2
+b d
+1
+
+ar
+3
+g b s
+2
+b c
+1
+
+as
+1
+d
+2
+b e
+1
+
+at
+1
+s 
+2
+c d
+1
+
+au
+1
+v 
+1
+c
+1
+
+
+av
+1
+g 
+1
+e
+1
+

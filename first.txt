@@ -1,146 +1,146 @@
 22
 
-aa
+ChoiTaejin
 2
 g d 
 5
 a b c d e
 3
 
-ab
+SeokSeungwon
 1
 b
 3
 a c d
 2
 
-ac
+KimEunsol
 1
 v
 2
 a c
 1
 
-ad
+LeeGoeun
 2
 b s
 2
 a c
 1
 
-ae
+LimHyeongmin
 1
 d
 2
 a c
 1
 
-af
+OhTaehyeon
 5
 v g b s d
 3
 a b e
 2
 
-ag
+KimHyeokjin
 1
 s 
 2
 a c
 1
 
-ah
+LeeYeongjin
 1
 g 
 3
 a b c
 1
 
-ai
+NoHuiseo
 2
 d s
 4
 a b d e
 2
 
-aj
+ChoiJuhan
 1
 d 
 2
 a c
 1
 
-ak
+JeongHyeonu
 4
 g v b d 
 3
 a d e
 2
 
-al
+YuJihyeon
 2
 v d 
 4
 a b d e
 1
 
-am
+GoJeonguk
 1
 b 
 2
 a b
 1
 
-an
+KimSujeong
 1
 b
 1
 a
 1
 
-ao
+OhJunyeop
 2
 g b
 2
 a e
 1
 
-ap
+LeeDaeun
 1
 v
 2
 a e
 1
 
-aq
+ChoiJihye
 1
 g 
 2
 b d
 1
 
-ar
+KimHyeonsu
 3
 g b s
 2
 b c
 1
 
-as
+LeeJaewon
 1
 d
 2
 b e
 1
 
-at
+KimTaehyeon
 1
 s 
 2
 c d
 1
 
-au
+KimHuijae
 1
 v 
 1
@@ -148,7 +148,7 @@ c
 1
 
 
-av
+YuHwanseok
 1
 g 
 1
